@@ -14,9 +14,14 @@ Ctrl + V here
 \`\`\`
 
 ## Usage
-To use this script, use /dumpguild while in-game to collect new data. Then, run the script. Notepad will open by default with the output.
+1. To use this script, use /dumpguild while in-game to collect new data. This can be put into a macro.
+- Verify that the output directory was to `C:\Users\YourUserNameHere\Documents\RIFT\guild.xml` 
+- If it wasn't output to this directory, you will need to change the script to match your system's setup.
 
-The following output is taken from the <A New Journey>@Deepwood guild sometime during the day of 2/19/2022:
+2. Run the .bat file with the .ps1 file in the same directory, or run the PowerShell file directly if your system policy supports it. 
+3. Notepad will open by default with the output. This output is stored at `C:\Users\YourUserNameHere\Documents\RIFT\guild.txt`.
+
+The following output is taken from the <A New Journey>@Deepwood guild sometime during the day of 2/19/2022.
 As you can see, it looks pretty raw. Generally a little bit of manual formatting is recommended from here, though it is not required.
 
 ```
