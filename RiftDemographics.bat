@@ -1,1 +1,1 @@
-powershell RiftDemographics.ps1
+powershell .\RiftDemographics.ps1
