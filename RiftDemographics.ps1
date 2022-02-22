@@ -126,6 +126,25 @@ $GuildTXTContent `
 (Get-Content -Raw $GuildTXT).Replace("$([Environment]::NewLine)$([Environment]::NewLine)", "$([Environment]::NewLine)") `
 | Set-Content $GuildTXT
 
+# Remove the 3 and 2 spaces in a row and make it dashes instead
+$GuildTXTContent = Get-Content -Path $GuildTXT # Saving to variable makes it so file isn't "open" and can be edited via Set
+$AllowReplacing = $false # Only allow replacing after we get down to the unique char level groupings
+$GuildTXTContent `
+| ForEach-Object { 
+    if($AllowReplacing){
+        if(-not $_.Equals("")) {
+            'Lv' + $_.ToString().Replace("   ", " - ").Replace("  ", " - ") 
+        }
+    } else {
+      $_
+    }
+    # The line under Lvl Count
+    if($_.Equals("--- -----")) {
+        $AllowReplacing = $true
+    }
+} `
+| Set-Content -Path $GuildTXT
+
 # Comment me out if you're on a different system than Windows, or change the app that runs to a different text editor.
 Write-Output 'File output done! Opening Notepad now.'
 notepad $GuildTXT
