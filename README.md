@@ -5,14 +5,6 @@ This script is theoretically cross-platform, though it is entirely untested on n
 
 There is no way with the /dumpguild command or with the Addon API to track Guild Member faction (Guardian/Defiant).
 
-When outputting demographics to a platform such as Discord, remember to use Code Script formatting. That is generally 3 backticks, followed by the text, followed by another 3 backticks. This ensures that columns retain their formatting.
-
-\`\`\`
-
-Ctrl + V here
-
-\`\`\`
-
 ## Usage
 1. To use this script, use /dumpguild while in-game to collect new data. This can be put into a macro.
 - Verify that the output directory was to `C:\Users\YourUserNameHere\Documents\RIFT\guild.xml` 
