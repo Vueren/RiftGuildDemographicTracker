@@ -63,7 +63,7 @@ $GuildMembers.Count `
 
 # This displays the number of chars online in the last week.
 $GuildMembers `
-| Where-Object { $(Get-Date $_.LastLogOutTime) -gt (Get-Date).AddDays(-7) } `
+| Where-Object { $(Get-Date $_.LastLogOutTime) -gt ([DateTime]::UtcNow).AddDays(-7) } `
 | Sort-Object { Get-Date $_.LastLogOutTime } `
 | Group-Object `
 | Select-Object -Property Name,Count `
@@ -75,7 +75,7 @@ $GuildMembers `
 
 # This displays the number of chars online sometime today.
 $GuildMembers `
-| Where-Object { $(Get-Date $_.LastLogOutTime) -gt (Get-Date).AddDays(-1) } `
+| Where-Object { $(Get-Date $_.LastLogOutTime) -gt ([DateTime]::UtcNow).AddDays(-1) -or $_.IsOnline -eq 'True' } `
 | Sort-Object { Get-Date $_.LastLogOutTime } `
 | Group-Object `
 | Select-Object -Property Name,Count `
