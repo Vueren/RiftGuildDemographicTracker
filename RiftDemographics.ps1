@@ -7,7 +7,7 @@ $GuildXML = [xml](Get-Content -Path $("$([Environment]::GetFolderPath('MyDocumen
 
 # Check this path as well if you're on a system different to Windows. This is the output file for the script.
 # Feel free to 
-$GuildTXT = $([Environment]::GetFolderPath("MyDocuments") + '\RIFT\guild.txt')
+$GuildTXT = $([Environment]::GetFolderPath("MyDocuments") + "$($DSV)RIFT$($DSV)guild.txt")
 Set-Content -Path $GuildTXT -Value ''
 
 # This will be an ArrayList of ArrayLists. The program currently segments each range out by 10's.
