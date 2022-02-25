@@ -13,93 +13,98 @@ There is no way with the /dumpguild command or with the Addon API to track Guild
 2. Run the .bat file with the .ps1 file in the same directory, or run the PowerShell file directly if your system policy supports it. 
 3. Notepad will open by default with the output. This output is stored at `C:\Users\YourUserNameHere\Documents\RIFT\guild.txt`.
 
-The following output is taken from the <A New Journey>@Deepwood guild sometime during the day of 2/19/2022.
+The following output is taken raw from the <A New Journey>@Deepwood guild sometime during the day of 2/19/2022.
 As you can see, it looks pretty raw. Generally a little bit of manual formatting is recommended from here, though it is not required.
 
 ```
 
 Number of Chars in Guild
 ------------------------
-113
+126
 
 Number of Chars Online In The Last Week
 ---------------------------------------
-87
+88
 
 Number of Chars Online In The Last Day
 --------------------------------------
-53
+33
 
 Calling   Count
 -------   -----
-Mage      30
-Rogue     30
-Cleric    22
-Warrior   19
-Primalist 12
+Mage      32
+Rogue     31
+Cleric    26
+Warrior   23
+Primalist 14
 
 Lvl Range Count
 --------- -----
-70        5
-60        10
-50        8
-40        13
-30        18
+70        6
+60        11
+50        11
+40        15
+30        21
 20        39
-10        15
-1         5
+10        16
+1         7
 
 Lvl Count
 --- -----
-70  5
-66  2
-65  4
-64  1
-63  1
-61  1
-60  1
-58  1
-54  1
-52  1
-51  2
-50  3
-49  1
-48  1
-47  2
-45  3
-43  2
-42  2
-41  1
-40  1
-39  2
-38  2
-36  1
-35  1
-34  3
-33  3
-32  3
-31  2
-30  1
-29  2
-28  8
-27  1
-26  3
-25  3
-24  2
-23  2
-22  8
-21  5
-20  5
-18  3
-17  4
-16  2
-13  2
-12  2
-11  1
-10  1
-5   1
-4   1
-1   3
+Lv70 - 6
+Lv66 - 2
+Lv65 - 5
+Lv64 - 1
+Lv61 - 1
+Lv60 - 2
+Lv58 - 1
+Lv57 - 1
+Lv56 - 1
+Lv53 - 2
+Lv52 - 2
+Lv51 - 2
+Lv50 - 2
+Lv49 - 2
+Lv47 - 1
+Lv46 - 2
+Lv45 - 2
+Lv44 - 1
+Lv43 - 1
+Lv42 - 2
+Lv41 - 3
+Lv40 - 1
+Lv39 - 3
+Lv38 - 3
+Lv37 - 1
+Lv36 - 1
+Lv35 - 1
+Lv34 - 5
+Lv33 - 1
+Lv32 - 2
+Lv31 - 3
+Lv30 - 1
+Lv29 - 2
+Lv28 - 8
+Lv26 - 2
+Lv25 - 5
+Lv24 - 2
+Lv23 - 2
+Lv22 - 10
+Lv21 - 3
+Lv20 - 5
+Lv18 - 3
+Lv17 - 3
+Lv16 - 3
+Lv14 - 1
+Lv13 - 2
+Lv11 - 3
+Lv10 - 1
+Lv9 - 1
+Lv7 - 1
+Lv5 - 1
+Lv4 - 1
+Lv2 - 1
+Lv1 - 2
 ```
   
 # RiftOnlineNowCounter
