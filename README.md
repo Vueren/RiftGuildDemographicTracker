@@ -102,3 +102,36 @@ Lvl Count
 1   3
 ```
   
+# RiftOnlineNowCounter
+This script is one I use to keep track of all the currently online characters, currently AFK characters, and to know what time each character logged off.
+
+```
+Note: All character names were manually anonymized to protect the guilty.
+
+Name       IsOnline
+----       --------
+_          True
+_          True
+_          True
+
+Name    AFK
+----    ---
+_       True
+
+Name            LastLogOutTime
+----            --------------
+_               2/24/2022 5:19:26 PM
+_               2/24/2022 5:10:10 PM
+_               2/24/2022 5:00:00 PM
+_               2/24/2022 4:14:25 PM
+_               2/24/2022 3:59:06 PM
+_               2/24/2022 3:38:04 PM
+_               2/24/2022 3:32:43 PM
+_               2/24/2022 2:37:18 PM
+_               2/24/2022 1:45:54 PM
+_               2/24/2022 1:36:01 PM
+_               2/24/2022 1:34:45 PM
+_               2/24/2022 12:53:12 PM
+_               2/24/2022 12:52:20 PM
+Note: This list goes on for *all* characters. Manually truncated for the sake of space.
+```
