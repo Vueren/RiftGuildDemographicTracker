@@ -6,7 +6,6 @@ $DSV = [System.IO.Path]::DirectorySeparatorChar # Just wanted a shorter name for
 $GuildXML = [xml](Get-Content -Path $("$([Environment]::GetFolderPath('MyDocuments'))$($DSV)RIFT$($DSV)guild.xml"))
 
 # Check this path as well if you're on a system different to Windows. This is the output file for the script.
-# Feel free to 
 $GuildTXT = $([Environment]::GetFolderPath("MyDocuments") + "$($DSV)RIFT$($DSV)guild.txt")
 Set-Content -Path $GuildTXT -Value ''
 
