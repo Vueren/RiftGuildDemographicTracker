@@ -9,111 +9,127 @@ $GuildXML = [xml](Get-Content -Path $("$([Environment]::GetFolderPath('MyDocumen
 $GuildTXT = $([Environment]::GetFolderPath("MyDocuments") + "$($DSV)RIFT$($DSV)guild.txt")
 Set-Content -Path $GuildTXT -Value ''
 
-# This will be an ArrayList of ArrayLists. The program currently segments each range out by 10's.
-$levelRanges = New-Object System.Collections.ArrayList
-# Don't start at 0 or null reference for levels 1-9.
-$currentRange = -1
-
 # Drills down in the XML to the Members node.
 $GuildMembers = Select-XML -Xml $GuildXML -XPath '/Guild' `
   | Select -ExpandProperty Node `
   | Select -ExpandProperty Members `
   | Select -ExpandProperty Member
-
-# Sort by level and fill out the levelRanges array
-$GuildMembers `
-| Sort-Object { [int]$_.Level } `
-| ForEach-Object {
-  $newCurrentRange = ([Math]::Floor($_.Level / 10)) % 10 # Gets the 10s digit
-  if($newCurrentRange -ne $currentRange) { # If we made it to a new 10s digit in our sorted list
-      # make sure we aren't skipping 10s digits
-      # Example: if we don't have any Lv20's, we'll need to skip that range.
-      # Display is dependent on index, so add an empty list anyway to sync it up.
-      while($levelRanges.Count -le $newCurrentRange) {
-        $levelRanges.Add($(New-Object System.Collections.ArrayList)) | Out-Null
-      }
-      $currentRange = $newCurrentRange # make the new 10s digit our current digit
-  }
-  # Add the level to the most recently added level range
-  $levelRanges[$levelRanges.Count - 1].Add($_.Level) | Out-Null
-}
-
-# This retrieves the levelRange and pairs levels with it via a key-value pairing instead of an index-value pairing. 
-# - The key has the correct name for the level range, being the bottom level of the range. 
-# Can manipulate the text file output to manually add " - 69" to the end easily if desired.
-$levelRangesHash = @{}
-for( $i = $levelRanges.Count - 1; $i -ge 0; $i-- ) {
-  if($i -eq 0) {
-    $levelRange = 1
-  } else {
-    $levelRange = $i * 10
-  }
-  $levelRangesHash.Add($levelRange, $levelRanges[$i].Count)
-}
+  
+# Code Formatting
+'```' | Out-File -Append -FilePath $GuildTXT -Encoding utf8
 
 # This displays the total number of chars in the guild.
+"Number of Chars in Guild" | Out-File -Append -FilePath $GuildTXT -Encoding utf8
 $GuildMembers.Count `
 | Group-Object `
 | Select-Object -Property Name `
-| Format-Table `
-@{ Label='Number of Chars in Guild'; Expression='Name'; Alignment='Left'; } `
+| Format-Table -HideTableHeaders `
 | Write-Output `
 | Out-File -Append -FilePath $GuildTXT -Encoding utf8
 
 # This displays the number of chars online in the last week.
+"Number of Chars Online in the Last Week" | Out-File -Append -FilePath $GuildTXT -Encoding utf8
 $GuildMembers `
 | Where-Object { $(Get-Date $_.LastLogOutTime) -gt ([DateTime]::UtcNow).AddDays(-7) } `
 | Sort-Object { Get-Date $_.LastLogOutTime } `
 | Group-Object `
-| Select-Object -Property Name,Count `
+| Select-Object -Property Count `
 | Sort-Object Count -Descending `
-| Format-Table `
-@{ Label='Number of Chars Online In The Last Week'; Expression='Count'; Alignment='Left'; } `
+| Format-Table -HideTableHeaders `
 | Write-Output `
 | Out-File -Append -FilePath $GuildTXT -Encoding utf8
 
 # This displays the number of chars online sometime today.
+"Number of Chars Online in the Last Day" | Out-File -Append -FilePath $GuildTXT -Encoding utf8
 $GuildMembers `
 | Where-Object { $(Get-Date $_.LastLogOutTime) -gt ([DateTime]::UtcNow).AddDays(-1) -or $_.IsOnline -eq 'True' } `
 | Sort-Object { Get-Date $_.LastLogOutTime } `
 | Group-Object `
-| Select-Object -Property Name,Count `
+| Select-Object -Property Count `
 | Sort-Object Count -Descending `
-| Format-Table `
-@{ Label='Number of Chars Online In The Last Day'; Expression='Count'; Alignment='Left'; } `
+| Format-Table -HideTableHeaders `
 | Write-Output `
 | Out-File -Append -FilePath $GuildTXT -Encoding utf8
 
+# Code Formatting
+'```' | Out-File -Append -FilePath $GuildTXT -Encoding utf8
+
+###
+
+# Code Formatting
+'```' | Out-File -Append -FilePath $GuildTXT -Encoding utf8
 # This displays the number of members of each calling.
 $GuildMembers `
 | Group-Object Calling `
-| Select-Object -Property Name,Count `
+| Select-Object -Property Count,Name `
 | Sort-Object Count -Descending `
-| Format-Table `
-@{ Label='Calling'; Expression='Name'; Alignment='Left'; }, `
-@{ Label='Count'; Expression='Count'; Alignment='Left'; } `
+| Format-Table -HideTableHeaders `
 | Write-Output `
 | Out-File -Append -FilePath $GuildTXT -Encoding utf8
+# Code Formatting
+'```' | Out-File -Append -FilePath $GuildTXT -Encoding utf8
 
-# This displays each level range and the number of chars that fall within it.
-$levelRangesHash.GetEnumerator() `
-| Sort-Object -Property Name -Descending `
-| Format-Table `
-@{Label='Lvl Range'; Expression='Name'; Alignment='Left';}, `
-@{Label='Count'; Expression='Value'; Alignment='Left';} `
-| Write-Output `
-| Out-File -Append -FilePath $GuildTXT -Encoding utf8
+###
 
-# This displays the number of chars at each *unique* level. We might have 5 Lv70's for example.
-$levelRanges `
-| ForEach-Object { $_ | Group-Object } `
-| Select-Object -Property Name,Count `
-| Sort-Object { [int]$_.Name } -Descending `
-| Format-Table `
-@{ Label='Lvl'; Expression='Name'; Alignment='Left'; }, `
-@{ Label='Count'; Expression='Count'; Alignment='Left'; } `
-| Write-Output `
-| Out-File -Append -FilePath $GuildTXT -Encoding utf8
+# Code Formatting
+'```' | Out-File -Append -FilePath $GuildTXT -Encoding utf8
+for($i = 7; $i -ge 0; $i = $i - 1) {
+    if($i -eq 0) {
+        # Get number of chars from Lv1 to Lv9
+        "#Lv1-9's: " | Out-File -Append -FilePath $GuildTXT -Encoding utf8 -NoNewline
+        $GuildMembers `
+        | Where-Object { [int]$($_.Level) -ge 1 -and [int]$($_.Level) -le 9 } `
+        | Measure-Object `
+        | Select-Object -Property Count `
+        | ForEach-Object { $_.Count.ToString() + ' (+0)' } `
+        | Out-File -Append -FilePath $GuildTXT -Encoding utf8
+        # Get number of each level of chars from Lv1 to 9
+        $GuildMembers `
+        | Where-Object { [int]$($_.Level) -ge 1 -and [int]$($_.Level) -le 9 } `
+        | Group-Object -Property Level `
+        | Select-Object -Property Name,Count `
+        | Sort-Object Name -Descending `
+        | Format-Table -HideTableHeaders `
+        @{ Label='Name'; Expression={'Lv' + $_.Name}; Alignment='Left'; }, Count `
+        | Write-Output `
+        | Out-File -Append -FilePath $GuildTXT -Encoding utf8
+    } elseif ($i -lt 7) {
+        # Get number of LvI0-I9's (10-69)
+        "#Lv$($i)0-$($i)9's: " | Out-File -Append -FilePath $GuildTXT -Encoding utf8 -NoNewline
+        $GuildMembers `
+        | Where-Object { [int]$($_.Level) -ge ($i * 10) -and [int]$($_.Level) -le ($i * 10 + 9) } `
+        | Measure-Object `
+        | Select-Object -Property Count `
+        | ForEach-Object { $_.Count.ToString() + ' (+0)' } `
+        | Out-File -Append -FilePath $GuildTXT -Encoding utf8
+        # Get number of each level of LvI0-I9's (10-69)
+        $GuildMembers `
+        | Where-Object { [int]$($_.Level) -ge ($i * 10) -and [int]$($_.Level) -le ($i * 10 + 9) } `
+        | Group-Object -Property Level `
+        | Select-Object -Property Name,Count `
+        | Sort-Object Name -Descending `
+        | Format-Table -HideTableHeaders `
+        @{ Label='Name'; Expression={'Lv' + $_.Name}; Alignment='Left'; }, Count `
+        | Write-Output `
+        | Out-File -Append -FilePath $GuildTXT -Encoding utf8
+
+    } elseif ($i -eq 7) {    
+        # Get number of Lv70's
+        "#Lv70's: " | Out-File -Append -FilePath $GuildTXT -Encoding utf8 -NoNewline
+        $GuildMembers `
+        | Where-Object { [int]$($_.Level) -eq 70 } `
+        | Measure-Object `
+        | Select-Object -Property Count `
+        | ForEach-Object { $_.Count.ToString() + ' (+0)' } `
+        | Out-File -Append -FilePath $GuildTXT -Encoding utf8
+        # New line
+        "$([Environment]::NewLine)" | Out-File -Append -FilePath $GuildTXT -Encoding utf8
+    }
+}
+# Code Formatting
+'```' | Out-File -Append -FilePath $GuildTXT -Encoding utf8
+
+###
 
 # Removes extra white space on each line
 $GuildTXTContent = Get-Content -Path $GuildTXT # Saving to variable makes it so file isn't "open" and can be edited via Set
@@ -125,20 +141,30 @@ $GuildTXTContent `
 (Get-Content -Raw $GuildTXT).Replace("$([Environment]::NewLine)$([Environment]::NewLine)", "$([Environment]::NewLine)") `
 | Set-Content $GuildTXT
 
+# Removes the empty lines before each end of code formatting
+(Get-Content -Raw $GuildTXT).Replace("$([Environment]::NewLine)$([Environment]::NewLine)"+'```', "$([Environment]::NewLine)"+'```') `
+| Set-Content $GuildTXT
+
+# Adds a +0 counter placeholder next to each class name. This can be manually edited to show growth.
+(Get-Content -Raw $GuildTXT).Replace('Mage', '(+0) Mage').Replace('Rogue', '(+0) Rogue').Replace('Cleric', '(+0) Cleric').Replace('Warrior', '(+0) Warrior').Replace('Primalist', '(+0) Primalist') `
+| Set-Content $GuildTXT
+
+# Replaces the class names with their translations.
+(Get-Content -Raw $GuildTXT).Replace('Mage', 'Mage | Mage | Magier').Replace('Rogue', 'Rogue | Voleur | Schurke').Replace('Cleric', 'Cleric | Clerc | Kleriker').Replace('Warrior', 'Warrior | Guerrier | Krieger').Replace('Primalist', 'Primalist | Primaliste | Primalist') `
+| Set-Content $GuildTXT
+
 # Remove the 3 and 2 spaces in a row and make it dashes instead
 $GuildTXTContent = Get-Content -Path $GuildTXT # Saving to variable makes it so file isn't "open" and can be edited via Set
 $AllowReplacing = $false # Only allow replacing after we get down to the unique char level groupings
 $GuildTXTContent `
 | ForEach-Object { 
     if($AllowReplacing){
-        if(-not $_.Equals("")) {
-            'Lv' + $_.ToString().Replace("   ", " - ").Replace("  ", " - ") 
-        }
+        $_.ToString().Replace('   ', ' ').Replace('  ', " - ").Replace('  ', ' ') # Bug Note: Expression *might* not work for numbers >= 100.
     } else {
       $_
     }
-    # The line under Lvl Count
-    if($_.Equals("--- -----")) {
+    # Start with the lines under the start of the level ranges
+    if($_.StartsWith("#Lv60-69")) {
         $AllowReplacing = $true
     }
 } `
