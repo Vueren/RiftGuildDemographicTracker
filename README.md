@@ -16,96 +16,98 @@ There is no way with the /dumpguild command or with the Addon API to track Guild
 The following output is taken raw from the <A New Journey>@Deepwood guild sometime during the day of 2/19/2022.
 As you can see, it looks pretty raw. Generally a little bit of manual formatting is recommended from here, though it is not required.
 
+````
 ```
-
 Number of Chars in Guild
-------------------------
-126
+148
 
-Number of Chars Online In The Last Week
----------------------------------------
-88
+Number of Chars Online in the Last Week
+77
 
-Number of Chars Online In The Last Day
---------------------------------------
-33
+Number of Chars Online in the Last Day
+35
+```
+```
+38 (+0) Mage | Mage | Magier
+34 (+0) Rogue | Voleur | Schurke
+31 (+0) Cleric | Clerc | Kleriker
+27 (+0) Warrior | Guerrier | Krieger
+18 (+0) Primalist | Primaliste | Primalist
+```
+```
+#Lv70's: 7 (+0)
 
-Calling   Count
--------   -----
-Mage      32
-Rogue     31
-Cleric    26
-Warrior   23
-Primalist 14
-
-Lvl Range Count
---------- -----
-70        6
-60        11
-50        11
-40        15
-30        21
-20        39
-10        16
-1         7
-
-Lvl Count
---- -----
-Lv70 - 6
-Lv66 - 2
+#Lv60-69's: 17 (+0)
+Lv67 - 2
+Lv66 - 4
 Lv65 - 5
-Lv64 - 1
-Lv61 - 1
-Lv60 - 2
+Lv64 - 2
+Lv63 - 1
+Lv61 - 2
+Lv60 - 1
+
+#Lv50-59's: 14 (+0)
+Lv59 - 2
 Lv58 - 1
-Lv57 - 1
-Lv56 - 1
-Lv53 - 2
-Lv52 - 2
-Lv51 - 2
-Lv50 - 2
-Lv49 - 2
-Lv47 - 1
-Lv46 - 2
-Lv45 - 2
+Lv55 - 1
+Lv54 - 2
+Lv52 - 3
+Lv51 - 1
+Lv50 - 4
+
+#Lv40-49's: 16 (+0)
+Lv49 - 1
+Lv48 - 1
+Lv47 - 2
+Lv45 - 1
 Lv44 - 1
-Lv43 - 1
+Lv43 - 2
 Lv42 - 2
-Lv41 - 3
-Lv40 - 1
+Lv41 - 2
+Lv40 - 4
+
+#Lv30-39's: 23 (+0)
 Lv39 - 3
-Lv38 - 3
-Lv37 - 1
-Lv36 - 1
-Lv35 - 1
-Lv34 - 5
+Lv38 - 2
+Lv36 - 2
+Lv35 - 2
+Lv34 - 4
 Lv33 - 1
-Lv32 - 2
-Lv31 - 3
-Lv30 - 1
-Lv29 - 2
-Lv28 - 8
-Lv26 - 2
-Lv25 - 5
-Lv24 - 2
-Lv23 - 2
+Lv32 - 3
+Lv31 - 4
+Lv30 - 2
+
+#Lv20-29's: 42 (+0)
+Lv29 - 3
+Lv28 - 7
+Lv27 - 2
+Lv26 - 4
+Lv25 - 4
+Lv24 - 4
+Lv23 - 3
 Lv22 - 10
-Lv21 - 3
-Lv20 - 5
-Lv18 - 3
-Lv17 - 3
-Lv16 - 3
-Lv14 - 1
-Lv13 - 2
-Lv11 - 3
-Lv10 - 1
+Lv21 - 2
+Lv20 - 3
+
+#Lv10-19's: 21 (+0)
+Lv18 - 4
+Lv17 - 4
+Lv16 - 5
+Lv14 - 3
+Lv13 - 1
+Lv12 - 1
+Lv11 - 1
+Lv10 - 2
+
+#Lv1-9's: 8 (+0)
 Lv9 - 1
 Lv7 - 1
 Lv5 - 1
 Lv4 - 1
 Lv2 - 1
-Lv1 - 2
+Lv1 - 3
 ```
+````
   
 # RiftOnlineNowCounter
 This script is one I use to keep track of all the currently online characters, currently AFK characters, and to know what time each character logged off.
