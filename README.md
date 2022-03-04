@@ -13,8 +13,9 @@ There is no way with the /dumpguild command or with the Addon API to track Guild
 2. (Optional) Run the .bat file with the .ps1 file in the same directory. Note that this will require changing the PowerShell system policy. 
 3. Notepad will open by default with the output. This output is stored at `C:\Users\YourUserNameHere\Documents\RIFT\guild.txt`.
 
-The following output is taken raw from the <A New Journey>@Deepwood guild sometime during the day of 2/19/2022.
-As you can see, it looks pretty raw. Generally a little bit of manual formatting is recommended from here, though it is not required.
+The following output is taken raw from the <A New Journey>@Deepwood guild sometime during the day of 3/3/2022.
+This output includes (+0)'s for the event you have the previous day's output and wish to manually enter these values.
+Perhaps in the future I'll include a way to take a previous output file to compare the numbers to.
 
 ````
 ```
