@@ -10,7 +10,7 @@ There is no way with the /dumpguild command or with the Addon API to track Guild
 - Verify that the output directory was to `C:\Users\YourUserNameHere\Documents\RIFT\guild.xml` 
 - If it wasn't output to this directory, you will need to change the script to match your system's setup.
 
-2. Run the .bat file with the .ps1 file in the same directory, or run the PowerShell file directly if your system policy supports it. 
+2. (Optional) Run the .bat file with the .ps1 file in the same directory. Note that this will require changing the PowerShell system policy. 
 3. Notepad will open by default with the output. This output is stored at `C:\Users\YourUserNameHere\Documents\RIFT\guild.txt`.
 
 The following output is taken raw from the <A New Journey>@Deepwood guild sometime during the day of 2/19/2022.
